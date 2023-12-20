@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Tabuleiro\" />
+    <None Remove="tabuleiro\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tabuleiro\" />
+    <Folder Include="tabuleiro\" />
   </ItemGroup>
 </Project>
