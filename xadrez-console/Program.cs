@@ -13,8 +13,10 @@ namespace xadrez_console
                 Tabuleiro tab = new Tabuleiro(8, 8);
 
                 tab.AddPeca(new Rei(tab, Cor.Preta), new Posicao(0, 0));
-                tab.AddPeca(new Rei(tab, Cor.Preta), new Posicao(0, 9));
-
+                tab.AddPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
+                PosicaoXadrez pos = new PosicaoXadrez('c', 7);
+                Console.WriteLine(pos.ToPosicao());
+               
 
                 Tela.ImprimirTabuleiro(tab);
             }catch(TabuleiroException e)
