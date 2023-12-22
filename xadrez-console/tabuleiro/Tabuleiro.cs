@@ -37,6 +37,18 @@ namespace tabuleiro
             p.Posicao = pos;
         }
 
+        public Peca RemovePeca(Posicao pos)
+        {
+            if (Peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = Peca(pos);
+            aux.Posicao = null;
+            pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
+
         public bool ExsitePeça(Posicao pos)
         {
             ValidarPosicao(pos);
@@ -49,8 +61,8 @@ namespace tabuleiro
             {
                 return false;
             }
-                return true;
-        
+            return true;
+
         }
 
         public void ValidarPosicao(Posicao pos)
