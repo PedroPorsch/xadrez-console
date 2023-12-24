@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using tabuleiro;
 using xadrez;
 namespace xadrez_console
@@ -16,7 +16,11 @@ namespace xadrez_console
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.Turno);
             Console.WriteLine("Aguardadando jogada: " + partida.JogadorAtual);
-             
+            if (partida.Xeque)
+            {
+                Console.WriteLine("XEQUE");
+
+            }
 
         }
 
@@ -37,7 +41,7 @@ namespace xadrez_console
         public static void ImprimirConjunto(HashSet<Peca> conjunto)
         {
             Console.Write("[ ");
-            foreach(Peca peca in conjunto)
+            foreach (Peca peca in conjunto)
             {
                 Console.Write(peca + " ");
             }
@@ -53,7 +57,7 @@ namespace xadrez_console
                 for (int j = 0; j < tab.Colunas; j++)
                 {
                     Tela.ImprimirPeca(tab.Peca(i, j));
-                   
+
 
                 }
                 Console.WriteLine();
@@ -125,12 +129,13 @@ namespace xadrez_console
         public static PosicaoXadrez LerPosicaoXadrez()
         {
             string s = Console.ReadLine();
+
             char coluna = s[0];
             int linha = int.Parse(s[1] + " ");
             return new PosicaoXadrez(coluna, linha);
         }
 
-        
+
     }
 }
 

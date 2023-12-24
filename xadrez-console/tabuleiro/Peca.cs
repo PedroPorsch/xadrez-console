@@ -39,6 +39,11 @@ namespace tabuleiro
 			QuantidadeMovimentos++;
 		}
 
+		public void DecrementarMovimentos()
+		{
+			QuantidadeMovimentos--;
+		}
+
 
 		public bool PodeMoverPara(Posicao pos)
 		{
