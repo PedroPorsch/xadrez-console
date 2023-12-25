@@ -1,96 +1,81 @@
-﻿using System;
-namespace tabuleiro;
+﻿using tabuleiro;
 
-public class Bispo : Peca
+namespace xadrez
 {
 
-
-	public Bispo(Tabuleiro Tab, Cor cor) : base(Tab, cor)
-	{
-	}
-
-
-    public override string ToString()
+    class Bispo : Peca
     {
-        return "B";
-    }
 
-    private bool Podemover(Posicao pos)
-    {
-        Peca p = tab.Peca(pos);
-        return p == null || p.Cor != Cor;
-    }
-
-    public override bool[,] MovimentosPossiveis()
-    {
-        bool[,] mat = new bool[tab.Linhas, tab.Colunas];
-
-        Posicao pos = new Posicao(0, 0);
-
-        //NO
-
-        pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
-
-        while (tab.PoisicaoValida(pos) && Podemover(pos))
+        public Bispo(Tabuleiro tab, Cor cor) : base(tab, cor)
         {
-            mat[pos.Linha, pos.Coluna] = true;
-            if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
-            {
-                break;
-            }
-
-            pos.Linha = pos.Linha - 1;
         }
 
-
-        //Ne
-
-        pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
-
-        while (tab.PoisicaoValida(pos) && Podemover(pos))
+        public override string ToString()
         {
-            mat[pos.Linha, pos.Coluna] = true;
-            if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
-            {
-                break;
-            }
-
-            pos.Linha = pos.Linha + 1;
+            return "B";
         }
 
-
-        //SE
-
-        pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
-
-        while (tab.PoisicaoValida(pos) && Podemover(pos))
+        private bool PodeMover(Posicao pos)
         {
-            mat[pos.Linha, pos.Coluna] = true;
-            if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
-            {
-                break;
-            }
-
-            pos.Coluna = pos.Coluna + 1;
+            Peca p = tab.Peca(pos);
+            return p == null || p.Cor != Cor;
         }
 
-
-        //SO
-
-        pos.DefinirValores(Posicao.Linha +1 , Posicao.Coluna - 1);
-
-        while (tab.PoisicaoValida(pos) && Podemover(pos))
+        public override bool[,] MovimentosPossiveis()
         {
-            mat[pos.Linha, pos.Coluna] = true;
-            if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
+            bool[,] mat = new bool[tab.Linhas, tab.Colunas];
+
+            Posicao pos = new Posicao(0, 0);
+
+            // NO
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+            while (tab.PoisicaoValida(pos) && PodeMover(pos))
             {
-                break;
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
             }
 
-            pos.Coluna = pos.Coluna - 1;
-        }
+            // NE
+            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+            while (tab.PoisicaoValida(pos) && PodeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
+            }
 
-        return mat;
+            // SE
+            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+            while (tab.PoisicaoValida(pos) && PodeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
+            }
+
+            // SO
+            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+            while (tab.PoisicaoValida(pos) && PodeMover(pos))
+            {
+                mat[pos.Linha, pos.Coluna] = true;
+                if (tab.Peca(pos) != null && tab.Peca(pos).Cor != Cor)
+                {
+                    break;
+                }
+                pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
+            }
+
+            return mat;
+        }
     }
 }
-

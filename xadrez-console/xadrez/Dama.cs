@@ -14,7 +14,7 @@ public class Dama : Peca
 
     public override string ToString()
     {
-        return "B";
+        return "D";
     }
 
     private bool Podemover(Posicao pos)

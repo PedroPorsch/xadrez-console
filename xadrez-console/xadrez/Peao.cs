@@ -24,7 +24,7 @@ public class Peao : Peca
 
     public override string ToString()
     {
-        return "B";
+        return "P";
     }
 
     private bool Podemover(Posicao pos)
